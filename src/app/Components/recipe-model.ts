@@ -1,9 +1,9 @@
-interface Recipe {
+export interface Recipe {
     id: number;
     title: string;
     description: string;
     ingredients: string[];
-    instructions: string;
+    instruction: string;
     nutritionalfacts: {
         [key: string]: string
     };

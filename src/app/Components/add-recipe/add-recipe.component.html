@@ -1,0 +1,14 @@
+<button class="btn btn-primary addbtn">Add Recipe</button>
+<form (ngSubmit)="addRecipe()">
+    <label for="title">Title</label><br>
+    <input id="title" name="title" type="text" [(ngModel)]="newRecipe.title"><br>
+    <label for="description">Description</label><br>
+    <input id="description" name="description" type="text" [(ngModel)]="newRecipe.description"><br>
+    <label for="ingredients">Ingredients</label><br>
+    <input id="ingredients" name="ingredients" type="text" [(ngModel)]="newRecipe.ingredients"><br>
+    <label for="instruction">Instruction</label><br>
+    <input id="instruction" name="instruction" type="text" [(ngModel)]="newRecipe.instruction"><br>
+    <label for="nutritionalfacts">Nutritional Facts</label><br>
+    <input id="nutritionalfacts" name="nutritionalfacts" type="text" [(ngModel)]="newRecipe.nutritionalfacts"><br>
+    <input type="submit">
+</form>

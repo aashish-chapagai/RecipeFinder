@@ -1,0 +1,24 @@
+.cardcontainer {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(5, 18rem);
+    justify-content: space-around;
+    margin-top: 1%;
+    gap: 1em;
+}
+h1 {
+    display: inline;
+    margin: 0;
+    padding: 0;
+    margin-left: 2%;
+}
+.viewandupdate {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+.delete {
+    margin-top: 1em;;
+    margin-left: 50%;
+    transform: translateX(-50%);
+}
