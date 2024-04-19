@@ -1,5 +1,5 @@
-<button class="btn btn-primary addbtn">Add Recipe</button>
-<form (ngSubmit)="addRecipe()">
+<button class="btn btn-primary addbtn" (click)="displayAddForm()">Add Recipe</button>
+<form #recipeForm="ngForm" (ngSubmit)="addRecipe(recipeForm)" *ngIf="showAddForm" enctype="multipart/form-data">
     <label for="title">Title</label><br>
     <input id="title" name="title" type="text" [(ngModel)]="newRecipe.title"><br>
     <label for="description">Description</label><br>
@@ -7,8 +7,10 @@
     <label for="ingredients">Ingredients</label><br>
     <input id="ingredients" name="ingredients" type="text" [(ngModel)]="newRecipe.ingredients"><br>
     <label for="instruction">Instruction</label><br>
-    <input id="instruction" name="instruction" type="text" [(ngModel)]="newRecipe.instruction"><br>
+    <textarea id="instruction" name="instruction" type="text" [(ngModel)]="newRecipe.instruction"></textarea><br>
     <label for="nutritionalfacts">Nutritional Facts</label><br>
-    <input id="nutritionalfacts" name="nutritionalfacts" type="text" [(ngModel)]="newRecipe.nutritionalfacts"><br>
+    <input id="nutritionalfacts" name="nutritionalfacts" type="text" [(ngModel)]="newRecipe.nutritionalFacts"><br>
+    <label for="image">Image</label><br>
+    <input id="image" name="image" type="file" accept="image/*" [(ngModel)]="newRecipe.image"><br>
     <input type="submit">
 </form>

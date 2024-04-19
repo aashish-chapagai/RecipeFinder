@@ -1,4 +1,5 @@
 <div>
   <app-header></app-header>
-  <app-recipe-list></app-recipe-list>
+  <app-recipe-list (sendRecipe)="receiveRecipe($event)" (editRecipe)="editRecipe()" *ngIf="showRecipes == true"></app-recipe-list>
+  <app-repice-details [recipe]="recipe" [editable]="editable" *ngIf="showRecipes == false" (backButtonClicked)="goBack()"></app-repice-details>
 </div>

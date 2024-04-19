@@ -6,6 +6,10 @@
     margin-top: 1%;
     gap: 1em;
 }
+.addFormActive .cardcontainer {
+    width: 83%;
+    grid-template-columns: repeat(4, 18rem);
+}
 h1 {
     display: inline;
     margin: 0;

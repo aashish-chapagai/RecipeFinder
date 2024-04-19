@@ -1,10 +1,11 @@
 export interface Recipe {
-    id: number;
+    id: string;
     title: string;
     description: string;
     ingredients: string[];
     instruction: string;
-    nutritionalfacts: {
+    nutritionalFacts: {
         [key: string]: string
     };
+    image: File | null;
 }

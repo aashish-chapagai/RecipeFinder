@@ -1,0 +1,17 @@
+<div *ngIf="editable == false">
+    <button class="btn btn-primary" (click)="goBack()">Back</button>
+    <button class="btn btn-warning">Update</button>
+    <p>{{recipe?.title}}</p>
+    <p>{{recipe?.description}}</p>
+    <p>{{recipe?.ingredients}}</p>
+    <p>{{recipe?.instruction}}</p>
+    <p>{{recipe?.nutritionalFacts}}</p>
+</div>
+<div *ngIf="editable == true">
+    <button class="btn btn-primary" (click)="goBack()">Back</button>
+    <p>{{recipe?.title}}</p>
+    <p>{{recipe?.description}}</p>
+    <p>{{recipe?.ingredients}}</p>
+    <p>{{recipe?.instruction}}</p>
+    <p>{{recipe?.nutritionalFacts}}</p>
+</div>

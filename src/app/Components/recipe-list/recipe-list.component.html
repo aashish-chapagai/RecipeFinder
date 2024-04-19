@@ -1,18 +1,21 @@
 <div>
     <h1>All Recipes</h1>
-    <app-add-recipe (addedRecipe)="pushAddedRecipe($event)"></app-add-recipe>
+    <app-add-recipe (addedRecipe)="pushAddedRecipe($event)" (adjustRecipeCard)="adjustRecipeCard($event)"></app-add-recipe>
 </div>
-<div class="cardcontainer">
-    <div class="card" style="width: 18rem;" *ngFor="let recipe of recipes">
-        <img class="card-img-top" src="..." alt="Recipe Card">
-        <div class="card-body">
-            <h5 class="card-title">{{recipe.title}}</h5>
-            <p class="card-text">{{recipe.description}}</p>
-            <div class="viewandupdate">
-                <a href="#" class="btn btn-primary">View Full Details</a>
-                <button class="btn btn-warning">Update</button>
+<div [ngClass]="{ 'addFormActive': showAddForm }">
+    <p *ngIf="recipes.length <= 0" class="text-center m-3">No Recipes to show.</p>
+    <div class="cardcontainer">
+        <div class="card" style="width: 18rem;" *ngFor="let recipe of recipes">
+            <img class="card-img-top" src={{recipe.image}}>
+            <div class="card-body">
+                <h5 class="card-title">{{recipe.title}}</h5>
+                <p class="card-text">{{recipe.description}}</p>
+                <div class="viewandupdate">
+                    <button class="btn btn-primary" (click)="openRecipe(recipe)">View Full Details</button>
+                    <button class="btn btn-warning" (click)="updateRecipe(recipe)">Update</button>
+                </div>
+                <button class="btn btn-danger delete" (click)="deleteRecipe(recipe.id)">Delete</button>
             </div>
-            <button class="btn btn-danger delete">Delete</button>
         </div>
     </div>
 </div>

@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component} from '@angular/core';
+import { Component, EventEmitter, Output} from '@angular/core';
 import { Recipe } from '../recipe-model';
 import { AddRecipeComponent } from '../add-recipe/add-recipe.component';
 
@@ -11,49 +11,37 @@ import { AddRecipeComponent } from '../add-recipe/add-recipe.component';
   styleUrl: './recipe-list.component.css'
 })
 export class RecipeListComponent {
-  recipes: Recipe[] = [
-    {
-    id: 1,
-    title: 'Momo',
-    description: 'this is momo',
-    ingredients: ["chicken", "flour"],
-    instruction: 'ok momo',
-    nutritionalfacts: {'protein' : "10gm"}
-    }, 
-    {
-      id: 2,
-      title: 'Momo2',
-      description: 'this is momo2',
-      ingredients: ["chicken", "flour"],
-      instruction: 'ok momo',
-      nutritionalfacts: {'protein' : "10gm"}
-    }, 
-    {
-      id: 3,
-      title: 'Momo3',
-      description: 'this is momo3',
-      ingredients: ["chicken", "flour"],
-      instruction: 'ok momo',
-      nutritionalfacts: {'protein' : "10gm"}
-    }, 
-    {
-      id: 4,
-      title: 'Momo4',
-      description: 'this is momo4',
-      ingredients: ["chicken", "flour"],
-      instruction: 'ok momo',
-      nutritionalfacts: {'protein' : "10gm"}
-    }, 
-    {
-      id: 5,
-      title: 'Momo5',
-      description: 'this is momo5',
-      ingredients: ["chicken", "flour"],
-      instruction: 'ok momo',
-      nutritionalfacts: {'protein' : "10gm"}
+  @Output() sendRecipe: EventEmitter<Recipe> = new EventEmitter<Recipe>;
+  @Output() editRecipe: EventEmitter<void> = new EventEmitter<void>;
+  storedRecipes: string | null;  
+  showAddForm: boolean = false;
+  recipes: Recipe[] = []
+  constructor () {
+    this.storedRecipes = localStorage.getItem("Recipes");
+    if (this.storedRecipes == null) {
+      this.recipes = [];
+    } else {
+      this.recipes = JSON.parse(this.storedRecipes);
     }
-  ]
+  }
+
   pushAddedRecipe(recipe: Recipe) {
     this.recipes.push(recipe);
+    localStorage.setItem("Recipes", JSON.stringify(this.recipes));
+  }
+  deleteRecipe(recipeToDelete: string) {
+      const index = this.recipes.findIndex(recipe => recipe.id === recipeToDelete);
+      this.recipes.splice(index, 1);     
+      localStorage.setItem("Recipes", JSON.stringify(this.recipes));
+  }
+  openRecipe(recipe: Recipe) {
+    this.sendRecipe.emit(recipe);
+  }
+  updateRecipe(recipe: Recipe) {
+    this.editRecipe.emit();
+    this.openRecipe(recipe);
+  }
+  adjustRecipeCard(showAddForm: boolean) {
+    this.showAddForm = showAddForm;
   }
 }
