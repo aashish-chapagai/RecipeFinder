@@ -4,10 +4,10 @@
     grid-template-columns: repeat(5, 18rem);
     justify-content: space-around;
     margin-top: 1%;
-    gap: 1em;
+    row-gap: 1em;
 }
 .addFormActive .cardcontainer {
-    width: 83%;
+    width: 80%;
     grid-template-columns: repeat(4, 18rem);
 }
 h1 {

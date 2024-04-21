@@ -1,16 +1,33 @@
 <button class="btn btn-primary addbtn" (click)="displayAddForm()">Add Recipe</button>
 <form #recipeForm="ngForm" (ngSubmit)="addRecipe(recipeForm)" *ngIf="showAddForm" enctype="multipart/form-data">
-    <label for="title">Title</label><br>
-    <input id="title" name="title" type="text" [(ngModel)]="newRecipe.title"><br>
-    <label for="description">Description</label><br>
-    <input id="description" name="description" type="text" [(ngModel)]="newRecipe.description"><br>
-    <label for="ingredients">Ingredients</label><br>
-    <input id="ingredients" name="ingredients" type="text" [(ngModel)]="newRecipe.ingredients"><br>
-    <label for="instruction">Instruction</label><br>
-    <textarea id="instruction" name="instruction" type="text" [(ngModel)]="newRecipe.instruction"></textarea><br>
-    <label for="nutritionalfacts">Nutritional Facts</label><br>
-    <input id="nutritionalfacts" name="nutritionalfacts" type="text" [(ngModel)]="newRecipe.nutritionalFacts"><br>
+    <label for="title">Title<span>*</span></label><br>
+    <input id="title" name="title" type="text" [(ngModel)]="newRecipe.title" required><br>
+    <label for="description">Description<span>*</span></label><br>
+    <input id="description" name="description" type="text" [(ngModel)]="newRecipe.description" required><br>
+    <label for="ingredients">Ingredients<span>*</span></label><br>
+    <div>
+        <div class="datadiv" *ngFor="let ingredient of newRecipe.ingredients; let index = index">
+            <span>{{ ingredient }}</span>
+            <button type="button" class="dataremove" (click)="removeIngredient(index)">X</button>
+        </div>
+    </div>
+    <input type="text" id="ingredients" name="ingredients" [(ngModel)]="newIngredient" (keyup.enter)="addIngredient()">
+    <button type="button" (click)="addIngredient()">Add</button><br>
+    <label for="instruction">Instruction<span>*</span></label><br>
+    <textarea id="instruction" name="instruction" type="text" [(ngModel)]="newRecipe.instruction" required></textarea><br>
+    <label>Nutritional Facts</label><br>
+    <div>
+        <div class="datadiv" *ngFor="let fact of newRecipe.nutritionalFacts; let index = index">
+            <span>{{ fact.name }}: {{ fact.value }}</span>
+            <button type="button" class="dataremove" (click)="removeNutritionalFact(index)">X</button>
+        </div>
+    </div>
+    <label for="nutritionalfactsname">Name<span>*</span>:</label>
+    <input id="nutritionalfactsname" type="text" [(ngModel)]="newNutritionalFacts.name" name="nutritionalfactsname"><br>
+    <label for="nutritionalfactsvalue">Value<span>*</span>:</label>
+    <input id="nutritionalfactsvalue" type="text" [(ngModel)]="newNutritionalFacts.value" name="nutritionalfactsvalue" (keyup.enter)="addNutritionalFact()"><br>
+    <button type="button" (click)="addNutritionalFact()">Add Nutritional Facts</button><br>
     <label for="image">Image</label><br>
     <input id="image" name="image" type="file" accept="image/*" [(ngModel)]="newRecipe.image"><br>
-    <input type="submit">
+    <input type="submit" value="Add Recipe" [disabled]="recipeForm.invalid || !newRecipe.ingredients.length || !newRecipe.nutritionalFacts.length">
 </form>

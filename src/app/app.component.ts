@@ -22,9 +22,10 @@ export class AppComponent {
     description: '',
     ingredients: [],
     instruction: '',
-    nutritionalFacts: {},
+    nutritionalFacts: [],
     image: null
   }
+  searchQuery: string = '';
   receiveRecipe(recipe: Recipe) {
     this.recipe = recipe;
     this.showRecipes = false;
@@ -35,5 +36,11 @@ export class AppComponent {
   }
   editRecipe() {
     this.editable = true;
+  }
+  searchRecipe(searchQuery: string) {
+    this.searchQuery = searchQuery;
+  }
+  resetSearchQuery() {
+    this.searchQuery = '';
   }
 }

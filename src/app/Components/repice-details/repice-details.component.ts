@@ -17,4 +17,7 @@ export class RepiceDetailsComponent {
   goBack() {
     this.backButtonClicked.emit();
   }
+  saveRecipe() {
+    this.editable = false;
+  }
 }
