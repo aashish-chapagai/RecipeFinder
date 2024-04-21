@@ -1,5 +1,5 @@
 <div>
   <app-header (recipeSearchQuery)="searchRecipe($event)"></app-header>
-  <app-recipe-list [searchQuery]="searchQuery" (resetSearchQuery)="resetSearchQuery()" (sendRecipe)="receiveRecipe($event)" (editRecipe)="editRecipe()" *ngIf="showRecipes == true"></app-recipe-list>
-  <app-repice-details [recipe]="recipe" [editable]="editable" *ngIf="showRecipes == false" (backButtonClicked)="goBack()"></app-repice-details>
+  <app-recipe-list [searchQuery]="searchQuery" [updatedRecipe]="updatedRecipe" (resetSearchQuery)="resetSearchQuery()" (sendRecipe)="receiveRecipe($event)" (editRecipe)="editRecipe()" *ngIf="showRecipes == true"></app-recipe-list>
+  <app-repice-details [recipe]="recipe" [editable]="editable" *ngIf="showRecipes == false" (backButtonClicked)="goBack()" (updateButtonClicked)="enableUpdate()" (changeRecipe)="updateRecipe($event)"></app-repice-details>
 </div>

@@ -23,7 +23,7 @@ export class AddRecipeComponent {
     ingredients: [],
     instruction: '',
     nutritionalFacts: [],
-    image: null
+    image: ''
   }
   addRecipe(form: NgForm) {
     const ingredientsField = document.getElementById("ingredients")
@@ -34,10 +34,8 @@ export class AddRecipeComponent {
     if(nutritionalFactsValueField === document.activeElement) {
       return;
     }
-    const uploadedFile: File = form.value.image;
-    console.log(uploadedFile)
-    this.newRecipe.image = uploadedFile;
     this.newRecipe.id = uuidv4();
+    console.log(this.newRecipe.image)
     const copiedRecipe: Recipe = JSON.parse(JSON.stringify(this.newRecipe));
     this.addedRecipe.emit(copiedRecipe);
     form.resetForm();
@@ -70,5 +68,29 @@ export class AddRecipeComponent {
   }
   removeNutritionalFact(index: number) {
     this.newRecipe.nutritionalFacts.splice(index, 1);
+  }
+  saveImage(event: Event) {
+    const reader = new FileReader();
+    const input = event.target as HTMLInputElement;
+    reader.onload = (event: any) => {
+      const imageDataUrl: string = event.target.result;
+      this.newRecipe.image = imageDataUrl;
+    };
+    if (!input.files) {
+      return;
+    }
+    const imageFile = input.files[0];
+    reader.readAsDataURL(imageFile);
+  }
+  onImageSelected(event: any) {
+    const imageFile: File = event.target.files[0];
+    const imageFileSize = imageFile.size / 1024;
+    if (imageFileSize > 250) {
+      const imageTag = document.getElementById('image') as HTMLInputElement;
+      imageTag.value= '';
+      return;
+    } else {
+      this.saveImage(event);
+    }
   }
 }

@@ -27,7 +27,7 @@
     <label for="nutritionalfactsvalue">Value<span>*</span>:</label>
     <input id="nutritionalfactsvalue" type="text" [(ngModel)]="newNutritionalFacts.value" name="nutritionalfactsvalue" (keyup.enter)="addNutritionalFact()"><br>
     <button type="button" (click)="addNutritionalFact()">Add Nutritional Facts</button><br>
-    <label for="image">Image</label><br>
-    <input id="image" name="image" type="file" accept="image/*" [(ngModel)]="newRecipe.image"><br>
-    <input type="submit" value="Add Recipe" [disabled]="recipeForm.invalid || !newRecipe.ingredients.length || !newRecipe.nutritionalFacts.length">
+    <label for="image">Image<span>*</span> (Maximum File Size: 250KB)</label><br>
+    <input id="image" name="image" type="file" accept="image/*" (change)="onImageSelected($event)"><br>
+    <input type="submit" value="Add Recipe" [disabled]="recipeForm.invalid || !newRecipe.ingredients.length || !newRecipe.nutritionalFacts.length || newRecipe.image == ''">
 </form>

@@ -1,22 +1,48 @@
 <div *ngIf="editable == false">
     <button class="btn btn-primary" (click)="goBack()">Back</button>
-    <button class="btn btn-warning">Update</button>
-    <p>{{recipe?.title}}</p>
-    <p>{{recipe?.description}}</p>
-    <p>{{recipe?.ingredients}}</p>
-    <p>{{recipe?.instruction}}</p>
+    <button class="btn btn-warning" (click)="enableUpdate()">Update</button>
+    <img [src]="recipe.image" alt="Recipe Image">
+    <p>{{recipe.title}}</p>
+    <p>{{recipe.description}}</p>
+    <p>{{recipe.ingredients}}</p>
+    <p>{{recipe.instruction}}</p>
     <p *ngFor="let fact of recipe?.nutritionalFacts">
         {{ fact.name }}: {{ fact.value }}
     </p>
 </div>
 <div *ngIf="editable == true">
-    <button class="btn btn-primary" (click)="goBack()">Back</button>
-    <p>{{recipe?.title}}</p>
-    <p>{{recipe?.description}}</p>
-    <p>{{recipe?.ingredients}}</p>
-    <p>{{recipe?.instruction}}</p>
-    <p *ngFor="let fact of recipe?.nutritionalFacts">
-        {{ fact.name }}: {{ fact.value }}
-    </p>
-    <button class="btn btn-primary" (click)="saveRecipe()">Save</button>
+    <form #updateRecipeForm="ngForm" (ngSubmit)="updateRecipe()" enctype="multipart/form-data">
+        <label for="title">Title<span>*</span></label><br>
+        <input id="title" name="title" type="text" [(ngModel)]="recipe.title" required><br>
+        <label for="description">Description<span>*</span></label><br>
+        <input id="description" name="description" type="text" [(ngModel)]="recipe.description" required><br>
+        <label for="ingredients">Ingredients<span>*</span></label><br>
+        <div>
+            <div class="datadiv" *ngFor="let ingredient of recipe.ingredients; let index = index">
+                <span>{{ ingredient }}</span>
+                <button type="button" class="dataremove" (click)="removeIngredient(index)">X</button>
+            </div>
+        </div>
+        <input type="text" id="ingredients" name="ingredients" [(ngModel)]="newIngredient" (keyup.enter)="addIngredient()">
+        <button type="button" (click)="addIngredient()">Add</button><br>
+        <label for="instruction">Instruction<span>*</span></label><br>
+        <textarea id="instruction" name="instruction" type="text" [(ngModel)]="recipe.instruction" required></textarea><br>
+        <label>Nutritional Facts</label><br>
+        <div>
+            <div class="datadiv" *ngFor="let fact of recipe.nutritionalFacts; let index = index">
+                <span>{{ fact.name }}: {{ fact.value }}</span>
+                <button type="button" class="dataremove" (click)="removeNutritionalFact(index)">X</button>
+            </div>
+        </div>
+        <label for="nutritionalfactsname">Name<span>*</span>:</label>
+        <input id="nutritionalfactsname" type="text" [(ngModel)]="newNutritionalFacts.name" name="nutritionalfactsname"><br>
+        <label for="nutritionalfactsvalue">Value<span>*</span>:</label>
+        <input id="nutritionalfactsvalue" type="text" [(ngModel)]="newNutritionalFacts.value" name="nutritionalfactsvalue" (keyup.enter)="addNutritionalFact()"><br>
+        <button type="button" (click)="addNutritionalFact()">Add Nutritional Facts</button><br>
+        <label for="image">Image<span>*</span> (Maximum File Size: 250KB)</label><br>
+        <img [src]="recipe.image" alt="Recipe Image">
+        <input id="image" name="image" type="file" accept="image/*" (change)="onImageSelected($event)"><br>
+        <input type="submit" value="Update Recipe" [disabled]="updateRecipeForm.invalid || !recipe.ingredients.length || !recipe.nutritionalFacts.length || recipe.image == ''">
+    </form>
+    <button class="btn btn-primary" (click)="goBack()">Cancel</button>
 </div>

@@ -8,7 +8,7 @@
     <p *ngIf="filteredRecipes.length <= 0" class="text-center m-3">No Recipes to show.</p>
     <div class="cardcontainer">
         <div class="card" style="width: 18rem;" *ngFor="let recipe of filteredRecipes">
-            <img class="card-img-top" src={{recipe.image}}>
+            <img class="card-img-top" src={{recipe.image}} alt="Recipe Image">
             <div class="card-body">
                 <h5 class="card-title">{{recipe.title}}</h5>
                 <p class="card-text">{{recipe.description}}</p>

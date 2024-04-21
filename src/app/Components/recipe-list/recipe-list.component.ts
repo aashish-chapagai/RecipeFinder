@@ -12,12 +12,30 @@ import { AddRecipeComponent } from '../add-recipe/add-recipe.component';
 })
 export class RecipeListComponent {
   @Input() searchQuery: string = '';
+  @Input() updatedRecipe: Recipe = {
+    id: '',
+    title: '',
+    description: '',
+    ingredients: [],
+    instruction: '',
+    nutritionalFacts: [],
+    image: ''
+  };
   @Output() sendRecipe: EventEmitter<Recipe> = new EventEmitter<Recipe>;
   @Output() editRecipe: EventEmitter<void> = new EventEmitter<void>;
   @Output() resetSearchQuery: EventEmitter<void> = new EventEmitter<void>;
   storedRecipes: string | null;  
   showAddForm: boolean = false;
   recipes: Recipe[] = [];
+  comparisonRecipe: Recipe = {
+    id: '',
+    title: '',
+    description: '',
+    ingredients: [],
+    instruction: '',
+    nutritionalFacts: [],
+    image: ''
+  };
   constructor () {
     this.storedRecipes = localStorage.getItem("Recipes");
     if (this.storedRecipes == null) {
@@ -32,9 +50,10 @@ export class RecipeListComponent {
   }
   ngOnChanges(changes: SimpleChanges) {
     if (changes['searchQuery']) {     
-      console.log(changes['searchQuery'].previousValue) 
-      console.log(changes['searchQuery'].currentValue)
       this.chechSearch();
+    }
+    if (changes['updatedRecipe']) {
+      this.updateRecipeDetails();
     }
   }
   pushAddedRecipe(recipe: Recipe) {
@@ -50,7 +69,6 @@ export class RecipeListComponent {
   }
   openRecipe(recipe: Recipe) {
     this.sendRecipe.emit(recipe);
-    console.log(this.searchQuery)
   }
   updateRecipe(recipe: Recipe) {
     this.editRecipe.emit();
@@ -67,5 +85,14 @@ export class RecipeListComponent {
   }
   backFromSearch() {
     this.resetSearchQuery.emit();
+  }
+  updateRecipeDetails() {
+    const recipeIndex = this.recipes.findIndex(recipe => recipe.id === this.updatedRecipe?.id);
+    if (recipeIndex !== -1) {
+      const { id, ...updatedData } = this.updatedRecipe;
+      this.recipes[recipeIndex] = { ...this.recipes[recipeIndex], ...updatedData };
+      localStorage.setItem("Recipes", JSON.stringify(this.recipes));
+      this.filteredRecipes = this.recipes
+    }
   }
 }

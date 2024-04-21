@@ -7,5 +7,5 @@ export interface Recipe {
     ingredients: string[];
     instruction: string;
     nutritionalFacts: NutritionalFact[];
-    image: File | null;
+    image: string;
 }

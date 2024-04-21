@@ -23,7 +23,16 @@ export class AppComponent {
     ingredients: [],
     instruction: '',
     nutritionalFacts: [],
-    image: null
+    image: ''
+  }
+  updatedRecipe: Recipe = {
+    id: '',
+    title: '',
+    description: '',
+    ingredients: [],
+    instruction: '',
+    nutritionalFacts: [],
+    image: ''
   }
   searchQuery: string = '';
   receiveRecipe(recipe: Recipe) {
@@ -34,6 +43,9 @@ export class AppComponent {
     this.showRecipes = true;
     this.editable = false;
   }
+  enableUpdate() {
+    this.editable = true;
+  }
   editRecipe() {
     this.editable = true;
   }
@@ -42,5 +54,8 @@ export class AppComponent {
   }
   resetSearchQuery() {
     this.searchQuery = '';
+  }
+  updateRecipe(updatedRecipe: Recipe) {
+    this.updatedRecipe = updatedRecipe;
   }
 }
