@@ -3,18 +3,18 @@
     <app-add-recipe (addedRecipe)="pushAddedRecipe($event)" (adjustRecipeCard)="adjustRecipeCard($event)"></app-add-recipe>
 </div>
 <div [ngClass]="{ 'addFormActive': showAddForm }">
-    <button *ngIf="searchQuery != ''" class="btn btn-primary" (click)="backFromSearch()">Back</button>
-    <p *ngIf="searchQuery != ''" class="text-center m-3">Search Results for: {{searchQuery}}</p>
-    <p *ngIf="filteredRecipes.length <= 0" class="text-center m-3">No Recipes to show.</p>
+    <button *ngIf="searchQuery != ''" id="backfromsearch" class="btn btn-primary" (click)="backFromSearch()">Back</button>
+    <h3 *ngIf="searchQuery != ''" class="text-center m-3">Search Results for: {{searchQuery}}</h3>
+    <p id="norecipes" *ngIf="filteredRecipes.length <= 0" class="text-center">No Recipes to show. Please Add Recipes.</p>
     <div class="cardcontainer">
         <div class="card" style="width: 18rem;" *ngFor="let recipe of filteredRecipes">
-            <img class="card-img-top" src={{recipe.image}} alt="Recipe Image">
+            <img class="card-img-top recipeimage" src={{recipe.image}} alt="Recipe Image">
             <div class="card-body">
                 <h5 class="card-title">{{recipe.title}}</h5>
                 <p class="card-text">{{recipe.description}}</p>
                 <div class="viewandupdate">
                     <button class="btn btn-primary" (click)="openRecipe(recipe)">View Full Details</button>
-                    <button class="btn btn-warning" (click)="updateRecipe(recipe)">Update</button>
+                    <button class="btn btn-warning" id="updatebutton" (click)="updateRecipe(recipe)">Update</button>
                 </div>
                 <button class="btn btn-danger delete" (click)="deleteRecipe(recipe.id)">Delete</button>
             </div>

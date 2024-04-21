@@ -1,6 +1,6 @@
 .addbtn {
     position: absolute;
-    right: 2%;
+    right: 1%;
     margin-top: 0.8em;
 }
 form {
@@ -8,29 +8,49 @@ form {
     padding: 1em;
     margin-top: 0.5em;
     border: 0.1em solid black;
-    right: 2%;
+    right: 1%;
     z-index: 1;
     max-width: 18em;
+    border-radius: 0.3em;
 }
 label > span {
     color: red;
 }
-input {
+input:not(input[type='file']) {
     margin-bottom: 0.5em;
-    max-width: 15em;
+    max-width: 17em;
+    height: 1.8em;
+    border-radius: 0.3em;
+    border: 0.1em solid black;
+}
+input::file-selector-button {
+    border: 0.1em solid black;
+    border-radius: 0.3em;
+    margin-bottom: 0.5em;
+    border: none;
+    background-color: #0B5ED7;
+    color: white;
+}
+button {
+    border-radius: 0.3em;
 }
 #instruction {
+    border: 0.1em solid black;
+    border-radius: 0.3em;
     margin-bottom: 0.5em;
     width: 100%;
     resize: none;
     height: 10em;
 }
-input[name='title'], input[name='description'] {
+#title, #description {
     width: 100%;
 }
 .dataremove {
     margin-left: 0.2em;
     padding: 0 0.2em 0 0.2em;
+    background-color: #A34343;
+    color: white;
+    border-radius: 0;
 }
 .datadiv {
     display: inline;
@@ -38,4 +58,53 @@ input[name='title'], input[name='description'] {
     margin-top: 0.1em;
     margin-bottom: 0.1em;
     border: 0.1em solid black;
+}
+#ingredientsform {
+    width: 100%;
+}
+#ingredients {
+    width: 80%;
+}
+#addingredientsbutton {
+    width: 18%;
+    margin-left: 2%;
+    border: none;
+    background-color: #0B5ED7;
+    color: white;
+    height: 1.8em;
+}
+#addnutritionalfactsbutton {
+    margin-bottom: 0.5em;
+    width: 100%;
+    border: none;
+    background-color: #0B5ED7;
+    color: white;
+    height: 1.8em;
+}
+#addrecipebutton {
+    border: none;
+    color: white;
+    margin-left: 50%;
+    background-color: #0B5ED7;
+    transform: translateX(-50%);
+    height: 1.8em;
+}
+#addrecipebutton:disabled {
+    background-color: #C4E4FF;
+}
+#nutritionalfactsnamediv, #nutritionalfactsvaluediv {
+    width: 100%;
+}
+#nutritionalfactsnamelabel, #nutritionalfactsvaluelabel {
+    width: 25%;
+}
+#nutritionalfactsname, #nutritionalfactsvalue {
+    width: 75%;
+}
+#showaddedingredients, #showaddedfacts {
+    margin-top: 0.7em;
+    margin-bottom: 0.7em;
+}
+#image {
+    margin-top: 1%;
 }

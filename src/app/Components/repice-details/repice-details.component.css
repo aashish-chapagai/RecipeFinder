@@ -1,3 +1,159 @@
 label > span {
     color: red;
 }
+#backbutton {
+    margin: 1% 0 0% 3%;
+}
+#updatebutton {
+    margin: 1% 0 0% 1%;
+}
+#recipecontainer {
+    width: 94%;
+    display: flex;
+    margin: auto;
+    flex-direction: row;
+    column-gap: 4%;
+    margin-top: 2%;
+}
+#recipeimage {
+    flex-basis: 50%;
+    border-radius: 0.5em;
+    width: 100%;
+    height: 75vh;
+}
+#recipedetails {
+    flex-basis: 50%;
+}
+#requirementdiv {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 15% 85%;
+    grid-template-areas: 'ingredientstitle factstitle'
+                         'ingredients facts';
+    gap: 1.5em;
+    margin-bottom: 1em;
+}
+#ingredientstitle {
+    grid-area: ingredientstitle;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+}
+#factstitle {
+    grid-area: factstitle;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+}
+#ingredientslist {
+    grid-area: ingredients;
+    width: 100%;
+    height: 100%;
+}
+#factsbody {
+    grid-area: facts;
+    width: 100%;
+    height: 100%;
+}
+#imagecontainer {
+    flex-basis: 50%;
+}
+#image {
+    margin-top: 1%;
+}
+#canceledit {
+    margin-left: 3%;
+}
+label > span {
+    color: red;
+}
+input:not(input[type='file']) {
+    margin-bottom: 0.5em;
+    height: 1.8em;
+    border-radius: 0.3em;
+    width: 100%;
+    border: 0.1em solid black;
+}
+input::file-selector-button {
+    border: 0.1em solid black;
+    border-radius: 0.3em;
+    margin-bottom: 0.5em;
+    border: none;
+    background-color: #0B5ED7;
+    color: white;
+}
+button {
+    border-radius: 0.3em;
+}
+#instruction {
+    border: 0.1em solid black;
+    border-radius: 0.3em;
+    margin-bottom: 0.5em;
+    width: 100%;
+    resize: none;
+    height: 10em;
+}
+#title, #description {
+    width: 100%;
+}
+.dataremove {
+    margin-left: 0.2em;
+    padding: 0 0.2em 0 0.2em;
+    border: none;
+    background-color: #A34343;
+    color: white;
+    border-radius: 0;
+}
+.datadiv {
+    display: inline;
+    margin-right: 0.3em;
+    margin-top: 0.1em;
+    margin-bottom: 0.1em;
+    border: 0.1em solid black;
+}
+#addingredientsbutton {
+    width: 90%;
+    margin-left: 2%;
+    border: none;
+    background-color: #0B5ED7;
+    color: white;
+    height: 1.8em;
+}
+#addnutritionalfactsbutton {
+    margin-bottom: 0.5em;
+    width: 100%;
+    border: none;
+    background-color: #0B5ED7;
+    color: white;
+    height: 1.8em;
+}
+#updaterecipebutton {
+    border: none;
+    color: white;
+    margin-left: 50%;
+    background-color: #0B5ED7;
+    transform: translateX(-50%);
+    height: 1.8em;
+}
+#updaterecipebutton:disabled {
+    background-color: #C4E4FF;
+}
+#showaddedingredients, #showaddedfacts {
+    margin-top: 0.7em;
+    margin-bottom: 0.7em;
+}
+#factsname, #factsvalue {
+    display: grid;
+    grid-template-columns: 20% 80%;
+}
+#nutritionalfactsvalue, #nutritionalfactsname {
+    width: 100%;
+}
+#ingredientsadd {
+    display: grid;
+    grid-template-columns: 80% 20%;
+    gap: 0.5em;
+}
+#imagelabel {
+    margin-top: 1%;
+}

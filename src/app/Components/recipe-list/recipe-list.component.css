@@ -14,15 +14,31 @@ h1 {
     display: inline;
     margin: 0;
     padding: 0;
-    margin-left: 2%;
+    margin-left: 1%;
 }
 .viewandupdate {
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: space-between;
+}
+#updatebutton {
+    width: 40%;
 }
 .delete {
     margin-top: 1em;;
     margin-left: 50%;
     transform: translateX(-50%);
+}
+.recipeimage {
+    width: 18rem;
+    height: 13rem;
+    margin: auto;
+}
+#backfromsearch {
+    margin-left: 1%;
+    margin-top: 1%;
+}
+#norecipes {
+    font-size: 1.5em;
+    margin-top: 5%;
 }
